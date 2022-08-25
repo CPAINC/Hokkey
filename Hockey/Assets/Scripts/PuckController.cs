@@ -46,8 +46,9 @@ public class PuckController : MonoBehaviour
         if (goal && 0 < puck.transform.position.z && puck.transform.position.z < 0.5)
         {
             audioGoal.Play();
-            respawnPuck();
             gameData.GiveHits();
+            respawnPuck();
+
         }
         
     }
@@ -61,7 +62,6 @@ public class PuckController : MonoBehaviour
             puck.transform.GetComponent<Rigidbody>().AddForce(positionTarget, ForceMode.Impulse);
             goal = true;
             speedPuck = slider.fillAmount * 25;
-            gameData.GetPuck();
             effectShow.startSpeed = slider.fillAmount;
             effectShow.Play();
 
@@ -76,8 +76,8 @@ public class PuckController : MonoBehaviour
         if (collision.transform.tag == "Goalkeeper")
         {
             goal = false;
-            respawnPuck();
             gameData.GetHeal();
+            respawnPuck();
             audioMiss.Play();
         }
     }
@@ -88,8 +88,7 @@ public class PuckController : MonoBehaviour
     {
         effectShow.Stop();
         goalkeeper.UpdateSpeed();
-        if (gameData.ViewHeal() <= 0) canvas.LoseGame();
-        else if (gameData.ViewPucks() <= 0) canvas.WinGame();
+        if (gameData.ViewHeal() <= 0) canvas.EndGame();
         puck.transform.position = StartTransform;
     }
 }

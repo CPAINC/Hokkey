@@ -3,16 +3,8 @@ using UnityEngine;
 public class GameData : MonoBehaviour
 {
     private int heal = 3;
-    private int pucks = 8;
     private int hits = 0;
 
-    /// <summary>
-    /// Отнять 1 шайбу
-    /// </summary>
-    public void GetPuck()
-    {
-        pucks--;
-    }
     /// <summary>
     /// Отнять 1 жизнь
     /// </summary>
@@ -34,14 +26,6 @@ public class GameData : MonoBehaviour
     public int ViewHeal()
     {
         return heal;
-    }
-    /// <summary>
-    /// Получить кол-во шайб
-    /// </summary>
-    /// <returns></returns>
-    public int ViewPucks()
-    {
-        return pucks;
     }
     /// <summary>
     /// Узнать кол-во попаданий игрока в ворота
